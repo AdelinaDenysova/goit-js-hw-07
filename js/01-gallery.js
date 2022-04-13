@@ -18,3 +18,19 @@ function onGalleryMarkup(galleryItems) {
 
 const galleryEL = document.querySelector('.gallery');
 galleryEL.insertAdjacentHTML('beforeend', onGalleryMarkup(galleryItems));
+
+galleryEL.addEventListener('click', onImageClick);
+
+function onImageClick(event) {
+    event.preventDefault();
+
+    if (event.target.nodeName !== 'IMG') {
+        return;
+    };
+
+    const image = basicLightbox.create(`
+     <img src="${event.target.dataset.source}">
+    `);
+
+    image.show();
+};
