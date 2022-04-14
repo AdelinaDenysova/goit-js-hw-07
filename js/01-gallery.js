@@ -29,7 +29,7 @@ function onImageClick(event) {
     };
 
     const image = basicLightbox.create(`
-     <img src="${event.target.dataset.source}">
+     <img src="${event.target.dataset.source}" alt="${event.target.alt}">
     `);
 
     image.show();
