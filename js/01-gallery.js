@@ -22,15 +22,23 @@ galleryEL.insertAdjacentHTML('beforeend', onGalleryMarkup(galleryItems));
 galleryEL.addEventListener('click', onImageClick);
 
 function onImageClick(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (event.target.nodeName !== 'IMG') {
-        return;
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  };
+
+  const image = basicLightbox.create(`
+    <img src="${event.target.dataset.source}" alt="${event.target.alt}">
+  `, {
+    onShow: () => {window.addEventListener('keydown', onImageClose)}
+  });
+
+  image.show();
+  
+  function onImageClose(event) {
+     if (event.key === 'Escape') {
+       image.close();
     };
-
-    const image = basicLightbox.create(`
-     <img src="${event.target.dataset.source}" alt="${event.target.alt}">
-    `);
-
-    image.show();
+  };
 };
