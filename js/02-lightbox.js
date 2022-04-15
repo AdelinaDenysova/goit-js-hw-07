@@ -11,3 +11,5 @@ function onGalleryMarkup(galleryItems) {
 
 const galleryEL = document.querySelector('.gallery');
 galleryEL.insertAdjacentHTML('beforeend', onGalleryMarkup(galleryItems));
+
+let gallery = new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: '250ms' });
