@@ -31,14 +31,16 @@ function onImageClick(event) {
   const image = basicLightbox.create(`
     <img src="${event.target.dataset.source}" alt="${event.target.alt}">
   `, {
-    onShow: () => {window.addEventListener('keydown', onImageClose)}
+    onShow: () => {window.addEventListener('keydown', onImageClose)},
+    onClose: () => {window.removeEventListener('keydown', onImageClose)},
   });
 
   image.show();
   
   function onImageClose(event) {
-     if (event.key === 'Escape') {
-       image.close();
+     if (event.key !== 'Escape') {
+      return;
     };
+    image.close();
   };
 };
